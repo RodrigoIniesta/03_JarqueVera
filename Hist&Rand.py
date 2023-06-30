@@ -19,7 +19,7 @@ from scipy.stats import skew,kurtosis,chi2
 nb_sims=10**6
 df=5
 lam=2
-dist_name= 'student'
+dist_name= 'normal'
 dist_type = 'sim RV'
 
 if dist_name == 'normal':
@@ -43,14 +43,14 @@ Todays goal - Create Jarque - Bera normality test
 '''
 x_variance=np.var(x)
 x_skew = skew(x)
-x_kurtosis = kurtosis(x)
+x_kurtosis = kurtosis(x) #Esta Kurtosis ya esta en exceso (K-3)
 x_jarque_bera = nb_sims/6*(x_skew**2+1/4*x_kurtosis**2)
 
 p_value = 1 - chi2.cdf(x_jarque_bera,df=2)
 x_is_normal = (p_value>0.05)  
 
 #jb_list = [] #create a list
-#jb_list.append(x_jarque_bera)
+#jb_list.append(x_jarque_bera) #Para ir apilando los resultados correr varias veces
 
 print('kurtosis is ' + str(x_kurtosis)) 
 print('skew is ' + str(x_skew))
