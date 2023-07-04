@@ -45,9 +45,8 @@ x_variance=np.var(x)
 x_skew = skew(x)
 x_kurtosis = kurtosis(x) #Esta Kurtosis ya esta en exceso (K-3)
 x_jarque_bera = nb_sims/6*(x_skew**2+1/4*x_kurtosis**2)
-
 p_value = 1 - chi2.cdf(x_jarque_bera,df=2)
-x_is_normal = (p_value>0.05)  
+x_is_normal = (p_value>0.05)  #para revisar si el p_value es mayor 1-.95
 
 #jb_list = [] #create a list
 #jb_list.append(x_jarque_bera) #Para ir apilando los resultados correr varias veces
@@ -55,6 +54,7 @@ x_is_normal = (p_value>0.05)
 print('kurtosis is ' + str(x_kurtosis)) 
 print('skew is ' + str(x_skew))
 print('Jarque-Bera statistic is ' + str(x_jarque_bera))
+print('p-value is :' + str(p_value))
 print('is normal ' + str(x_is_normal))
 #plot histograms (run all at time)
 plt.figure()
@@ -63,4 +63,3 @@ plt.title(x_desc)
 plt.show()
 
 
-#test of edition in GITHUB
